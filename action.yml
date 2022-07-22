@@ -1,7 +1,7 @@
 name: 'Connect to GCP'
 description: 'A composite action which allows one to easily connect the Github Action runner to a a GCP Cloud and GKE Cluster, and thereby run commands that allow one to manage various GCP resources via the CLI. Uses https://github.com/google-github-actions/auth and https://github.com/google-github-actions/setup-gcloud'
 inputs:
-  GKA_SA_KEY:
+  GCP_SA_KEY:
     description: 'Service Account Key JSON (see: https://github.com/google-github-actions/auth)'
     required: true
   GCP_PROJECT_ID:
@@ -19,7 +19,7 @@ runs:
     - name: Authenticate at GCP
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ inputs.GKE_SA_KEY }}'
+        credentials_json: '${{ inputs.GCP_SA_KEY }}'
 
     - name: Setup gcloud
       uses: google-github-actions/setup-gcloud@v0
