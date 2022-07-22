@@ -1,0 +1,30 @@
+name: 'Connect to GCP'
+description: 'A composite action which allows one to easily connect the Github Action runner to a a GCP Cloud and GKE Cluster, and thereby run commands that allow one to manage various GCP resources via the CLI. Uses https://github.com/google-github-actions/auth and https://github.com/google-github-actions/setup-gcloud'
+inputs:
+  GKA_SA_KEY:
+    description: 'Service Account Key JSON (see: https://github.com/google-github-actions/auth)'
+    required: true
+  GCP_PROJECT_ID:
+    description: 'GCP Project ID (see: https://github.com/google-github-actions/setup-gcloud)'
+    required: true
+  GKE_CLUSTER:
+    description: 'GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name'
+    required: true
+  GKE_ZONE: 
+    description: 'GKE zone/location, where the cluster is hosted (can be found next to cluster name)'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Authenticate at GCP
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ inputs.GKE_SA_KEY }}'
+
+    - name: Setup gcloud
+      uses: google-github-actions/setup-gcloud@v0
+      with:   
+        project_id: ${{ inputs.GCP_PROJECT_ID }}
+    
+    - name: Get GKE credentials
+      run: gcloud container clusters get-credentials "${{ inputs.GKE_CLUSTER }}" --zone "${{ inputs.GKE_ZONE }}"
