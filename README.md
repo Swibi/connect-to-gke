@@ -1,5 +1,5 @@
-# Connect to GCP
-A composite action for easy setup and connection to a gke cluster running on the Google Cloud Platform. 
+# Connect to GKE
+A composite action for easy setup and connection to a GKE cluster running on the Google Cloud Platform. Use the connection to automate releases, backups, restarts or any other CLI functionality.
 
 ## Prerequisites
 
