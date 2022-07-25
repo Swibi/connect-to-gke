@@ -1,7 +1,7 @@
 # Connect to GCP
 A composite action for easy setup and connection to a gke cluster running on the Google Cloud Platform. 
 
-# Usage
+## Usage
 
 Simply include the following step in your GitHub action to connect to a GKE cluster, and set the GitHub secrets according to the instructions give by the actions used within this composite:
 
@@ -24,3 +24,6 @@ The description for the various values are as follows:
     * GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name
 * GKE_ZONE: 
     * GKE zone/location, where the cluster is hosted (can be found next to cluster name)
+
+## Tip
+It is recommended to store the GKE_SA_KEY and any other sensative data within GitHub secrets, to avoid any leak of sensative information. If all you projects run in the same GCP project, then it is also an effective way of sharing configuration across your GitHub organisation/project.
