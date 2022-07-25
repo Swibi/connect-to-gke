@@ -1,4 +1,4 @@
-name: 'Connect to GCP'
+name: 'Connect to GKE'
 description: 'A composite action which allows one to easily connect the Github Action runner to a a GCP Cloud and GKE Cluster, and thereby run commands that allow one to manage various GCP resources via the CLI. Uses https://github.com/google-github-actions/auth and https://github.com/google-github-actions/setup-gcloud'
 inputs:
   GCP_SA_KEY:
