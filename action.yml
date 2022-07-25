@@ -27,4 +27,5 @@ runs:
         project_id: ${{ inputs.GCP_PROJECT_ID }}
     
     - name: Get GKE credentials
+      shell: bash
       run: gcloud container clusters get-credentials "${{ inputs.GKE_CLUSTER }}" --zone "${{ inputs.GKE_ZONE }}"
