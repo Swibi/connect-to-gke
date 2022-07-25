@@ -1,18 +1,30 @@
 # Connect to GCP
 A composite action for easy setup and connection to a gke cluster running on the Google Cloud Platform. 
 
+## Prerequisites
+
+Checkout the prerequisites for:
+* [google-github-actions/auth](https://github.com/google-github-actions/auth)
+* [google-github-actions/setup-gcloud](https://github.com/google-github-actions/setup-gcloud)
+
 ## Usage
 
 Simply include the following step in your GitHub action to connect to a GKE cluster, and set the GitHub secrets according to the instructions give by the actions used within this composite:
 
 ``` yaml
-- name: Connect to GKE
-  uses: 'Swibi/connect-to-gke'
-  with:
-    GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
-    GCP_PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-    GKE_CLUSTER: <your-cluster-name>
-    GKE_ZONE: <your-cluster-zone>
+jobs:
+  job_id:
+    steps:
+      - uses: actions/checkout@v3
+        name: Checkout repository
+
+      - name: Connect to GKE
+        uses: 'Swibi/connect-to-gke'
+        with:
+          GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
+          GCP_PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+          GKE_CLUSTER: <your-cluster-name>
+          GKE_ZONE: <your-cluster-zone>
 ```
 
 The description for the various values are as follows: 
