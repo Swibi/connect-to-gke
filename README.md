@@ -1,5 +1,5 @@
 # Connect to GCP
-A composite action for easy setup and connection to a gke cluster running on the Google Cloud Platform. 
+Connect runner to a Google Kubernetes Engine cluster on the Google Cloud Platform
 
 ## Usage
 

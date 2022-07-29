@@ -1,5 +1,8 @@
 name: 'Connect to GKE'
-description: 'A composite action which allows one to easily connect the Github Action runner to a a GCP Cloud and GKE Cluster, and thereby run commands that allow one to manage various GCP resources via the CLI. Uses https://github.com/google-github-actions/auth and https://github.com/google-github-actions/setup-gcloud'
+description: 'Connect runner to a Google Kubernetes Engine cluster on the Google Cloud Platform'
+branding:
+  icon: 'anchor'  
+  color: 'gray-dark'
 inputs:
   GCP_SA_KEY:
     description: 'Service Account Key JSON (see: https://github.com/google-github-actions/auth)'
