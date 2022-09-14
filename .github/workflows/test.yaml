@@ -1,4 +1,4 @@
-name: Deploy to GCP
+name: test
 
 on:
   pull_request:
@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  Test:
-    name: Test
+  test:
+    name: test
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.head_ref || github.run_id }}
