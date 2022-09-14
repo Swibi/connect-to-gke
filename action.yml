@@ -13,9 +13,6 @@ inputs:
   GKE_CLUSTER:
     description: 'GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name'
     required: true
-  GKE_ZONE: 
-    description: 'GKE zone/location, where the cluster is hosted (can be found next to cluster name)'
-    required: true
 runs:
   using: "composite"
   steps:
@@ -31,4 +28,4 @@ runs:
     
     - name: Get GKE credentials
       shell: bash
-      run: gcloud container clusters get-credentials "${{ inputs.GKE_CLUSTER }}" --zone "${{ inputs.GKE_ZONE }}"
+      run: gcloud container clusters get-credentials "${{ inputs.GKE_CLUSTER }}"
