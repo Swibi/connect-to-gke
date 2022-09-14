@@ -21,7 +21,7 @@ jobs:
         name: Checkout code
 
       - name: Connect to GKE
-        uses: action.yml
+        uses: ./action.yml
         with:
           GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
           GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
