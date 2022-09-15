@@ -29,6 +29,6 @@ jobs:
       - name: Connect to GKE
         uses: ./
         with:
-          GCP_SA_KEY: '$GCP_SA_KEY'
+          GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
           GCP_PROJECT_ID: '$GCP_PROJECT_ID'
           GKE_CLUSTER: '$GKE_CLUSTER'
