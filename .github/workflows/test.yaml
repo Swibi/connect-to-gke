@@ -16,16 +16,18 @@ jobs:
     concurrency:
       group: ${{ github.head_ref || github.run_id }}
       cancel-in-progress: true
+      
+    env:
+      GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
+      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         
       - name: Connect to GKE
         uses: ./
-        env:
-          GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
-          GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-          GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
         with:
           GCP_SA_KEY: $GKE_SA_KEY
           GCP_PROJECT_ID: $GCP_PROJECT_ID
