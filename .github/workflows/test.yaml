@@ -22,7 +22,11 @@ jobs:
         
       - name: Connect to GKE
         uses: ./
-        with:
+        env:
           GCP_SA_KEY: ${{ secrets.GKE_SA_KEY }}
           GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+        with:
+          GCP_SA_KEY: $GKE_SA_KEY
+          GCP_PROJECT_ID: $GCP_PROJECT_ID
+          GKE_CLUSTER: $GKE_CLUSTER
