@@ -34,20 +34,20 @@ runs:
 
     - name: Check zone/region
       shell: bash
-      if: inputs.GKE_ZONE == "" && inputs.GKE_REGION == ""
+      if: inputs.GKE_ZONE == '' && inputs.GKE_REGION == ''
       run: |
         echo "Either zone or region must be specified"
         exit 1
 
     - name: Set zone for location
       shell: bash
-      if: inputs.GKE_ZONE != ""
+      if: inputs.GKE_ZONE != ''
       run: |
         echo "LOCATION='--zone=`${{ inputs.GKE_ZONE }}`'" >> $GITHUB_ENV
 
     - name: Set region for location
       shell: bash
-      if: inputs.GKE_REGION != ""
+      if: inputs.GKE_REGION != ''
       run: |
         echo "LOCATION='--region=`${{ inputs.GKE_REGION }}`'" >> $GITHUB_ENV
     
