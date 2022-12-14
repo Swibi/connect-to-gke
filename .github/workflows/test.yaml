@@ -1,0 +1,41 @@
+name: test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+  workflow_dispatch:
+
+jobs:
+  test-zone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Connect to GKE 
+        uses: ./
+        with:
+          GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
+          GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
+          GKE_CLUSTER: '${{ secrets.GKE_CLUSTER_ZONE }}'
+          GKE_ZONE: '${{ secrets.GKE_ZONE }}'
+
+  test-region:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Connect to GKE 
+        uses: ./
+        with:
+          GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
+          GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
+          GKE_CLUSTER: '${{ secrets.GKE_CLUSTER_REGION }}'
+          GKE_REGION: '${{ secrets.GKE_REGION }}'
