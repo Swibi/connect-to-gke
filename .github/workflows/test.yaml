@@ -38,4 +38,4 @@ jobs:
           GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
           GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
           GKE_CLUSTER: '${{ secrets.GKE_CLUSTER }}'
-          GKE_ZONE: '${{ secrets.GKE_REGION }}'
+          GKE_REGION: '${{ secrets.GKE_REGION }}'
