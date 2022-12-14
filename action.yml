@@ -42,14 +42,12 @@ runs:
     - name: Set zone for location
       shell: bash
       if: inputs.GKE_ZONE != ''
-      run: |
-        echo "LOCATION='--zone=`${{ inputs.GKE_ZONE }}`'" >> $GITHUB_ENV
+      run: echo LOCATION='--zone="${{ inputs.GKE_ZONE }}"' >> $GITHUB_ENV
 
     - name: Set region for location
       shell: bash
       if: inputs.GKE_REGION != ''
-      run: |
-        echo "LOCATION='--region=`${{ inputs.GKE_REGION }}`'" >> $GITHUB_ENV
+      run: echo LOCATION='--region="${{ inputs.GKE_REGION }}"' >> $GITHUB_ENV
     
     - name: Get GKE credentials
       shell: bash
