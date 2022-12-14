@@ -10,25 +10,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: test
+  test-zone:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.head_ref || github.run_id }}
       cancel-in-progress: true
 
-    env:
-      GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-      GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Connect to GKE 
+        uses: ./
+        with:
+          GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
+          GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
+          GKE_CLUSTER: '${{ secrets.GKE_CLUSTER }}'
+          GKE_ZONE: '${{ secrets.GKE_ZONE }}'
+
+  test-region:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.head_ref || github.run_id }}
+      cancel-in-progress: true
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         
-      - name: Connect to GKE
+      - name: Connect to GKE 
         uses: ./
         with:
           GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
-          GCP_PROJECT_ID: '$GCP_PROJECT_ID'
-          GKE_CLUSTER: '$GKE_CLUSTER'
+          GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
+          GKE_CLUSTER: '${{ secrets.GKE_CLUSTER }}'
+          GKE_ZONE: '${{ secrets.GKE_REGION }}'
