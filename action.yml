@@ -29,7 +29,7 @@ runs:
       with:   
         project_id: ${{ inputs.GCP_PROJECT_ID }}
 
-    - id: 'Get GKE credentials'
+    - name: 'Get GKE credentials'
       uses: 'google-github-actions/get-gke-credentials@v1'
       with:
         cluster_name: ${{ inputs.GKE_CLUSTER }}
