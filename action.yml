@@ -33,4 +33,4 @@ runs:
       uses: 'google-github-actions/get-gke-credentials@v1'
       with:
         cluster_name: ${{ inputs.GKE_CLUSTER }}
-        location: ${{ env.LOCATION }}
+        location: ${{ inputs.GKE_LOCATION }}
