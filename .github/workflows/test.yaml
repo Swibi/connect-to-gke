@@ -23,7 +23,7 @@ jobs:
           GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
           GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
           GKE_CLUSTER: '${{ secrets.GKE_CLUSTER_ZONE }}'
-          GKE_ZONE: '${{ secrets.GKE_ZONE }}'
+          GKE_LOCATION: '${{ secrets.GKE_ZONE }}'
 
   test-region:
     runs-on: ubuntu-latest
@@ -38,4 +38,4 @@ jobs:
           GCP_SA_KEY: '${{ secrets.GCP_SA_KEY }}'
           GCP_PROJECT_ID: '${{ secrets.GCP_PROJECT_ID }}'
           GKE_CLUSTER: '${{ secrets.GKE_CLUSTER_REGION }}'
-          GKE_REGION: '${{ secrets.GKE_REGION }}'
+          GKE_LOCATION: '${{ secrets.GKE_REGION }}'

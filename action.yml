@@ -13,12 +13,9 @@ inputs:
   GKE_CLUSTER:
     description: 'GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name'
     required: true
-  GKE_ZONE: 
-    description: 'GKE zone, where the cluster is hosted (can be found next to cluster name). If the cluster is regional, use the region input instead'
-    required: false
-  GKE_REGION: 
-    description: 'GKE region, where the cluster is hosted (can be found next to cluster name). If the cluster is zonal, use the zone input instead'
-    required: false
+  GKE_LOCATION: 
+    description: 'GKE location, either zone or region, where the cluster is hosted (can be found next to cluster name)'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -32,23 +29,8 @@ runs:
       with:   
         project_id: ${{ inputs.GCP_PROJECT_ID }}
 
-    - name: Check zone/region
-      shell: bash
-      if: inputs.GKE_ZONE == '' && inputs.GKE_REGION == ''
-      run: |
-        echo "Either zone or region must be specified"
-        exit 1
-
-    - name: Set zone for location
-      shell: bash
-      if: inputs.GKE_ZONE != ''
-      run: echo LOCATION='--zone="${{ inputs.GKE_ZONE }}"' >> $GITHUB_ENV
-
-    - name: Set region for location
-      shell: bash
-      if: inputs.GKE_REGION != ''
-      run: echo LOCATION='--region="${{ inputs.GKE_REGION }}"' >> $GITHUB_ENV
-    
-    - name: Get GKE credentials
-      shell: bash
-      run: gcloud container clusters get-credentials "${{ inputs.GKE_CLUSTER }}" ${{ env.LOCATION }}
+    - name: 'Get GKE credentials'
+      uses: 'google-github-actions/get-gke-credentials@v1'
+      with:
+        cluster_name: ${{ inputs.GKE_CLUSTER }}
+        location: ${{ inputs.GKE_LOCATION }}
