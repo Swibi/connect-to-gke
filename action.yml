@@ -37,4 +37,4 @@ runs:
 
     - name: Limit access to kube config
       shell: bash
-      run: chmod 600 ~/.kube/config
+      run: chmod 600 $KUBECONFIG
