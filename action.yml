@@ -34,3 +34,7 @@ runs:
       with:
         cluster_name: ${{ inputs.GKE_CLUSTER }}
         location: ${{ inputs.GKE_LOCATION }}
+
+    - name: Limit access to kube config
+      shell: bash
+      run: chmod 600 ~/.kube/config
