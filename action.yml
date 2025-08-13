@@ -1,36 +1,36 @@
-name: 'Connect to GKE'
-description: 'Connect runner to a Google Kubernetes Engine cluster on the Google Cloud Platform'
+name: "Connect to GKE"
+description: "Connect runner to a Google Kubernetes Engine cluster on the Google Cloud Platform"
 branding:
-  icon: 'anchor'  
-  color: 'gray-dark'
+  icon: "anchor"
+  color: "gray-dark"
 inputs:
   GCP_SA_KEY:
-    description: 'Service Account Key JSON (see: https://github.com/google-github-actions/auth)'
+    description: "Service Account Key JSON (see: https://github.com/google-github-actions/auth)"
     required: true
   GCP_PROJECT_ID:
-    description: 'GCP Project ID (see: https://github.com/google-github-actions/setup-gcloud)'
+    description: "GCP Project ID (see: https://github.com/google-github-actions/setup-gcloud)"
     required: true
   GKE_CLUSTER:
-    description: 'GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name'
+    description: "GKE cluster to be connected to (check in GCP console, under Kubernetes Engine to get the cluster name"
     required: true
-  GKE_LOCATION: 
-    description: 'GKE location, either zone or region, where the cluster is hosted (can be found next to cluster name)'
+  GKE_LOCATION:
+    description: "GKE location, either zone or region, where the cluster is hosted (can be found next to cluster name)"
     required: true
 runs:
   using: "composite"
   steps:
     - name: Authenticate at GCP
-      uses: 'google-github-actions/auth@v1'
+      uses: "google-github-actions/auth@v2"
       with:
-        credentials_json: '${{ inputs.GCP_SA_KEY }}'
+        credentials_json: "${{ inputs.GCP_SA_KEY }}"
 
     - name: Setup gcloud
-      uses: google-github-actions/setup-gcloud@v1
-      with:   
+      uses: google-github-actions/setup-gcloud@v2
+      with:
         project_id: ${{ inputs.GCP_PROJECT_ID }}
 
-    - name: 'Get GKE credentials'
-      uses: 'google-github-actions/get-gke-credentials@v1'
+    - name: "Get GKE credentials"
+      uses: "google-github-actions/get-gke-credentials@v2"
       with:
         cluster_name: ${{ inputs.GKE_CLUSTER }}
         location: ${{ inputs.GKE_LOCATION }}
